@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="full-img" id="fullImgBox">
+        <button class="nav prev" onclick="prevImg()">❮</button>
+        <img src="images/img.1.jpg" id="fullImg">
+        <button class="nav next" onclick="nextImg()">❯</button>
+        <span onclick="closeFullImg()">X</span>
+    </div>
+    <div class="img-gallery">
+        <img src="images/img.1.jpg" alt="Gallery image 1" onclick="openFullImg(this.src)">
+        <img src="images/img.2.jpg" alt="Gallery image 2" onclick="openFullImg(this.src)">
+        <img src="images/img.3.jpg" alt="Gallery image 3" onclick="openFullImg(this.src)">
+        <img src="images/img.4.jpg" alt="Gallery image 4" onclick="openFullImg(this.src)">
+        <img src="images/img.5.jpg" alt="Gallery image 5" onclick="openFullImg(this.src)">
+        <img src="images/img.6.jpg" alt="Gallery image 6" onclick="openFullImg(this.src)">
+        <img src="images/img.7.jpg" alt="Gallery image 7" onclick="openFullImg(this.src)">
+        <img src="images/img.8.jpg" alt="Gallery image 8" onclick="openFullImg(this.src)">
+    </div>
+
+    <script>
+        var images = document.querySelectorAll(".img-gallery img");
+var currentIndex = 0;
+
+        var fullImgBox = document.getElementById("fullImgBox");
+        var fullImg = document.getElementById("fullImg");
+
+        function openFullImg(pic){
+            fullImgBox.style.display = "flex";
+            fullImg.src = pic;
+            images.forEach((img, index)=>{
+                if(img.src === pic){
+                    currentIndex = index;
+                }
+            })
+        }
+        function nextImg(){
+    currentIndex = (currentIndex + 1) % images.length;
+    fullImg.src = images[currentIndex].src;
+}
+function prevImg(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    fullImg.src = images[currentIndex].src;
+}
+
+        function closeFullImg(){
+            fullImgBox.style.display = "none";
+        }
+    </script>
+</body>
+</html>
